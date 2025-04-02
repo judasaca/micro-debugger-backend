@@ -1,11 +1,12 @@
-from scapy.all import sniff
+from scapy.all import Packet, sniff
 from scapy.layers.inet import IP, TCP, UDP
 
 PORT = 8000  # Target port to monitor
 
 
-def packet_callback(packet):
+def packet_callback(packet: Packet):
     """Callback function to process each captured packet."""
+
     if IP in packet:  # Ensure the packet has an IP layer
         src_ip = packet[IP].src
         dst_ip = packet[IP].dst
